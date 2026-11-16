@@ -13,7 +13,7 @@ Agent City shows a small business's AI agents as a **3D city** and as an **Agent
 - **Waiting for you.** The inbox lists every open question.
 - **Ask AI.** "Brief me on right now", "What has this agent done?", "Help me decide", and a free-form question. Answers come from Firebase AI Logic when it is configured.
 
-The sample company is **Northgate Home Services**, a made-up HVAC, plumbing, and handyman shop with 12 agents in Front Office, Dispatch, Billing, Sales, and Field Ops. The workday is played in the browser from `public/samples/business.json` and `src/sim.ts`. There is no server and no live customer data.
+The sample company is **Northgate Home Services**, a made-up HVAC, plumbing, and handyman shop with 13 agents in Front Office, Dispatch, Billing, Sales, and Field Ops. The workday is played in the browser from `public/samples/business.json` and `src/sim.ts`. There is no server and no live customer data.
 
 ## How Firebase AI Logic hybrid is used
 

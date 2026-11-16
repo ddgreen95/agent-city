@@ -293,7 +293,7 @@ export function AgentGraph({ data, brand, theme = "light", onAgent }: { data: Ci
             <div><b>You</b><small>Approve from your phone</small><big>{data.totals.waiting_for_you}</big></div>
             <div><b>Your team</b><small>Tagged when it's theirs</small><big>{data.totals.pending_approvals}</big></div>
             <div><b>Customers</b><small>Only after you say yes</small></div>
-            <div><b>Morning page</b><small>One page, every morning</small></div>
+            <div><b>Daily summary</b><small>One page of what needs you</small></div>
           </div>
         </section>
         <section className="ag-sec wide">

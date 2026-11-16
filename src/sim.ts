@@ -52,20 +52,22 @@ const SCRIPTS: Script[] = [
       { label: "Free first inspection", then: ["Leading with a free first inspection for 3 units, so they can try us."], result: "Follow-up drafted (leads with a free first inspection). It's in Drafts; nothing goes out without your go-ahead." },
       { label: "Just a friendly check-in", then: ["Keeping it to a friendly two-line check-in, no offer."], result: "Check-in drafted. It's in Drafts; nothing goes out without your go-ahead." }] } },
 
-  { agent: "List Builder", task: "40 property managers in Ann Arbor",
-    steps: ["Starting on the Ann Arbor property-manager list. First I'm pulling companies from public business listings.",
-      "Found 63 companies; removing ones outside our service area.",
-      "41 are in range. Checking each one has a public business email or phone.",
-      "Removing 3 that asked not to be contacted, and 2 that are already customers."],
-    result: "List ready: 36 property managers in Ann Arbor, each with a public contact and a reason they fit. Saved to the CRM as \"Ann Arbor PMs\"." },
+  { agent: "Parts Ordering", task: "Restock the trucks for Thursday's installs",
+    steps: ["Starting on truck stock for Thursday's installs. First I'm checking what's already on each truck.",
+      "Two trucks are short: capacitor kits for the furnace jobs, and supply lines for the faucet jobs.",
+      "The supplier can deliver tomorrow morning if the order is in by 3:00. The regular shipment is Friday."],
+    ask: { after: 3, prompt: "Thursday's installs need parts before the Friday shipment. Order the rush delivery ($45)?", options: [
+      { label: "Yes, rush it for tomorrow", then: ["Drafting a rush order for the capacitor kits and supply lines, plus the $45 delivery."], result: "Rush order drafted ($45 delivery). It waits for your OK; nothing has been ordered." },
+      { label: "No, wait for Friday", then: ["Leaving the order on the regular Friday shipment and flagging Thursday's jobs as short."], result: "Friday order drafted. Thursday's two jobs are flagged as waiting on parts." }] } },
 
-  { agent: "Caption Writer", task: "Captions for the furnace tune-up post",
-    steps: ["Starting on this week's furnace tune-up post. First I'm checking last month's best-performing captions.",
-      "Short, practical tips did twice as well as promotions. Writing three options in the brand voice.",
-      "Checking each caption against the brand voice guide: no jargon, one clear call to action."],
-    ask: { after: 3, prompt: "Which caption should go on Friday's post?", options: [
-      { label: "\"5 signs your furnace needs a tune-up\"", then: ["Using the 5-signs caption with a carousel of the checklist."], result: "Friday post ready to schedule with the 5-signs caption. It waits for your go-ahead before it's published." },
-      { label: "\"Cold snap coming: book by Thursday\"", then: ["Using the cold-snap caption with the booking link."], result: "Friday post ready to schedule with the cold-snap caption. It waits for your go-ahead before it's published." }] } },
+  { agent: "Review Requests", task: "Review requests for 5 finished jobs",
+    steps: ["Starting on review requests for this week's finished jobs.",
+      "5 jobs closed with no review yet. One customer asked not to be contacted, so I'm skipping them.",
+      "Drafting a short thank-you text for the other 4, with a link they can ignore."],
+    ask: { after: 3, prompt: "Which finished jobs should I ask for a review?", options: [
+      { label: "All 4 that are eligible", then: ["Queuing a thank-you text for all 4 eligible jobs."], result: "4 review requests drafted. They wait for your go-ahead; nothing has been sent." },
+      { label: "Only the ones who left a thank-you", then: ["Keeping it to the 2 customers who already thanked the technician."], result: "2 review requests drafted. They wait for your go-ahead; nothing has been sent." },
+      { label: "Hold off this week", then: ["Leaving the list for next week and not drafting any texts."], result: "No review requests drafted. The list is saved for next week." }] } },
 
   { agent: "Ticket Triage", task: "6 new service requests",
     steps: ["Starting on 6 new service requests from the website and voicemail.",
@@ -75,7 +77,7 @@ const SCRIPTS: Script[] = [
 
   { agent: "Scheduler", task: "3 emergency calls into tomorrow", due: "tomorrow",
     steps: ["Starting on tomorrow's schedule. First I'm looking for gaps near the three emergency addresses.",
-      "Mike has a 2-hour gap at 10:00 near two of them.",
+      "The on-call tech has a 2-hour gap at 10:00 near two of them.",
       "The third (Riverside Dr) only fits if I move a routine tune-up to Thursday."],
     ask: { after: 3, prompt: "To fit Riverside Dr tomorrow, should I move the 1:00 tune-up to Thursday?", options: [
       { label: "Yes, move it", then: ["Moving the tune-up to Thursday 1:00 and drafting a heads-up text to that customer."], result: "All 3 emergencies are on tomorrow's schedule. The tune-up customer's heads-up text is drafted for your OK." },
@@ -90,35 +92,49 @@ const SCRIPTS: Script[] = [
       { label: "Offer a payment plan", then: ["Drafting a reminder that offers two monthly payments of $430."], result: "2 reminders drafted, one with a payment-plan offer. Both wait in Drafts." },
       { label: "I'll call them myself", then: ["Leaving the 41-day account to you and adding a call reminder to your calendar draft."], result: "1 reminder drafted; a call note for the 41-day account is on your list." }] } },
 
-  { agent: "Person Research", task: "Riverbend HOA board before Thursday's call", due: "Thu",
-    steps: ["Starting on the Riverbend HOA board. First I'm reading their public meeting minutes.",
-      "Their last two meetings mention a boiler that keeps failing in Building C.",
-      "The board president runs a property-management firm; their annual budget vote is in December."],
-    result: "Call brief ready: 5 board members, the Building C boiler problem, December budget timing, and three questions to ask Thursday." },
+  { agent: "Office Manager", task: "Today's daily summary",
+    steps: ["Starting on today's daily summary. First I'm collecting everything that's waiting on you.",
+      "Adding today's finished jobs, open questions, money in and out, and tomorrow's appointments."],
+    result: "Daily summary ready: 3 things need you, $2,140 expected in, 7 appointments, 1 risk (a parts delay on Thursday's install)." },
 
-  { agent: "Chief of Staff", task: "Tomorrow's morning page",
-    steps: ["Starting on tomorrow's morning page. First I'm collecting everything that's waiting on you.",
-      "Adding today's finished work, open questions, money in and out, and tomorrow's appointments."],
-    result: "Morning page ready: 3 things need you, $2,140 expected in, 7 appointments, 1 risk (a parts delay on Thursday's install)." },
+  { agent: "Customer Callbacks", task: "4 missed calls from this morning",
+    steps: ["Starting on this morning's missed calls. First I'm listening to the voicemails.",
+      "Two want a plumber today: a leaking kitchen sink and a toilet that won't stop running.",
+      "One is a warranty question on a water heater. I'm passing that to Warranty Tracker.",
+      "The last is a quote question from Lakeside Apartments. Follow-Up already has that thread."],
+    result: "4 callbacks sorted: 2 plumbing visits offered for today, 1 sent to Warranty Tracker, 1 left with Follow-Up. Notes are in Drafts." },
+
+  { agent: "Warranty Tracker", task: "Water heater warranty on Maple St",
+    steps: ["Starting on the Maple St water heater. First I'm checking the install date on the job ticket.",
+      "It was installed 11 months ago. The tank is still under the manufacturer's warranty.",
+      "Our labour on a warranty swap is not covered unless we choose to waive it."],
+    ask: { after: 3, prompt: "The tank is under warranty, but our labour isn't. How should I write it up?", options: [
+      { label: "Warranty parts, bill the labour", then: ["Drafting the write-up with the tank at no charge and labour at the standard rate."], result: "Warranty write-up drafted: parts covered, labour billed. It's in Drafts; nothing has been sent." },
+      { label: "Goodwill, no charge", then: ["Drafting the write-up as a no-charge goodwill visit and noting it on the customer's file."], result: "Goodwill write-up drafted. It's in Drafts for your OK; nothing has been sent." },
+      { label: "Ask the customer first", then: ["Drafting a short note that explains what the warranty covers and asks how they'd like to proceed."], result: "Customer note drafted. It waits in Drafts; nothing has been sent." }] } },
+
+  { agent: "Estimate Builder", task: "Estimate for a kitchen faucet on Oak St",
+    steps: ["Starting on the Oak St faucet estimate. First I'm matching the price book.",
+      "The supply lines should be replaced with the faucet. That's a small parts add-on."],
+    ask: { after: 2, prompt: "They asked for a price today. Which option should the estimate lead with?", options: [
+      { label: "Standard chrome, $385 installed", then: ["Leading with the standard chrome faucet and new supply lines, installed."], result: "Estimate drafted at $385. It's in Drafts; nothing has been sent." },
+      { label: "Mid-grade with shutoffs, $540", then: ["Leading with the mid-grade faucet, new supply lines, and shutoff valves."], result: "Estimate drafted at $540. It's in Drafts; nothing has been sent." }] } },
+
+  { agent: "Maintenance Plan Reminders", task: "Plans renewing in the next 30 days",
+    steps: ["Starting on maintenance-plan renewals. First I'm checking who expires in the next 30 days.",
+      "6 plans are due. 2 already booked their tune-up.",
+      "Drafting a short reminder for the other 4, with the next open tune-up dates."],
+    ask: { after: 3, prompt: "Two of these plans lapsed last year. Offer them the returning-customer rate?", options: [
+      { label: "Yes, offer the returning rate", then: ["Adding the returning-customer rate to those two reminders."], result: "4 renewal reminders drafted, 2 with the returning-customer rate. They wait in Drafts." },
+      { label: "No, standard renewal only", then: ["Keeping every reminder to the standard renewal price."], result: "4 standard renewal reminders drafted. They wait in Drafts." }] } },
 
   { agent: "Proposal Writer", task: "Proposal for Riverbend HOA",
-    steps: ["Starting on the Riverbend HOA proposal. First I'm pulling the research brief and our price book.",
+    steps: ["Starting on the Riverbend HOA proposal. First I'm pulling the site notes and our price book.",
       "Drafting a two-option proposal: repair the Building C boiler, or replace it with a high-efficiency unit."],
     ask: { after: 2, prompt: "Should the proposal include the rebate paperwork as a free extra?", options: [
       { label: "Yes, include it", then: ["Adding rebate paperwork as a no-charge line; it usually wins HOA votes."], result: "Proposal drafted with two options and free rebate paperwork. Ready for your review." },
       { label: "No, keep it simple", then: ["Keeping the proposal to the two options and prices."], result: "Proposal drafted with two options. Ready for your review." }] } },
 
-  { agent: "SEO & AI Visibility", task: "Check how we show up in AI answers",
-    steps: ["Starting on our AI-search check. First I'm asking common questions like \"best furnace repair near Ann Arbor\".",
-      "We're named in 2 of 6 answers; a competitor is named in 4.",
-      "Their pages answer \"how much does it cost\" directly; ours don't."],
-    result: "Report ready: add a pricing FAQ to 3 service pages to show up in more AI answers. Draft FAQ text attached." },
-
-  { agent: "Contract Reviewer", task: "Review the new parts-supplier agreement",
-    steps: ["Starting on the parts-supplier agreement. First I'm reading payment terms and auto-renewal.",
-      "It auto-renews for 2 years unless cancelled 90 days before the end date.",
-      "Late-payment interest is 2% a month, higher than our other suppliers."],
-    result: "Review done: 2 things to push back on (90-day auto-renewal, 2%/month late fee). Suggested wording is in the notes." },
 ];
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -142,9 +158,9 @@ const push = (agent: string, item: Omit<FeedItem, "id" | "at"> & { at?: number }
 function seedHistory() {
   const t0 = now() - 1000 * 60 * 95;
   const past: [string, string, string][] = [
-    ["Chief of Staff", "Morning page", "Morning page ready: 4 things needed you, 6 appointments, no risks."],
+    ["Office Manager", "Yesterday's daily summary", "Daily summary ready: 4 things needed you, 6 appointments, no risks."],
     ["Ticket Triage", "Overnight voicemails", "Sorted 4 overnight voicemails: 1 urgent, 3 booked for this week."],
-    ["List Builder", "Ypsilanti landlords", "List ready: 22 landlords in Ypsilanti, saved to the CRM."],
+    ["Parts Ordering", "Last week's truck restock", "Ordered capacitor kits and supply lines. They arrived on the regular shipment."],
     ["Collections", "Last week's overdue reminder", "Reminder drafted for a 12-day invoice and left in Drafts."],
   ];
   past.forEach(([agent, task, result], k) => {
@@ -205,7 +221,7 @@ export async function startSim(): Promise<void> {
   base = await r.json();
   seedHistory();
   // start the agents the sample business already shows as busy, so the first screen matches the data
-  for (const name of ["Invoice Drafter", "Follow-Up", "List Builder", "Caption Writer", "Ticket Triage", "Scheduler"]) {
+  for (const name of ["Invoice Drafter", "Follow-Up", "Parts Ordering", "Review Requests", "Ticket Triage", "Scheduler"]) {
     const s = SCRIPTS.find((x) => x.agent === name); if (s) startRun(s);
   }
   // fast-forward the two that are already "waiting for you" to their question
