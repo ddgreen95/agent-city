@@ -1,0 +1,39 @@
+{
+  "note": "SAMPLE BUSINESS, fictional. Northgate Home Services is made up. Every name and every scoreboard number is sample data.",
+  "departments": [
+    {"key": "headquarters", "name": "Front Office", "building": "Main Office", "color": "#4DA3FF", "members": 2, "running": 0, "waiting": 0, "busy": false, "empty": false},
+    {"key": "dispatch", "name": "Dispatch", "building": "Dispatch Desk", "color": "#2EC4A6", "members": 1, "running": 1, "waiting": 0, "busy": true, "empty": false},
+    {"key": "billing", "name": "Billing", "building": "Billing Office", "color": "#C9A227", "members": 2, "running": 0, "waiting": 1, "busy": false, "empty": false},
+    {"key": "sales", "name": "Sales", "building": "Sales Office", "color": "#FF7A45", "members": 6, "running": 2, "waiting": 1, "busy": true, "empty": false},
+    {"key": "field_ops", "name": "Field Ops", "building": "Service Yard", "color": "#36B37E", "members": 1, "running": 1, "waiting": 0, "busy": true, "empty": false}
+  ],
+  "members": [
+    {"kind": "agent", "name": "Chief of Staff", "title": "Morning brief", "department": "headquarters", "running": 0, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "idle", "about": "Writes the one-page morning brief: what needs you, today's jobs, money in and out, and risks.", "doing": "", "doing_kind": ""},
+    {"kind": "agent", "name": "Contract Reviewer", "title": "Agreement review", "department": "headquarters", "running": 0, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "idle", "about": "Reads supplier and customer agreements and lists the risky clauses in plain English. Not legal advice.", "doing": "", "doing_kind": ""},
+    {"kind": "agent", "name": "Ticket Triage", "title": "Request sorter", "department": "dispatch", "running": 1, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "running", "about": "Sorts new service requests by urgency and lines them up for the day's routes.", "doing": "Sorting 6 new service requests", "doing_kind": "task_running"},
+    {"kind": "agent", "name": "Invoice Drafter", "title": "Invoices", "department": "billing", "running": 0, "queued": 0, "waiting": 1, "on_card": 1, "ai_calls_10m": 0, "failed_24h": 0, "state": "waiting_for_you", "about": "Drafts invoices from finished jobs and the price book. Nothing is sent until you say so.", "doing": "Drafting invoices for 4 finished jobs", "doing_kind": "card_waiting"},
+    {"kind": "agent", "name": "Collections", "title": "Payment reminders", "department": "billing", "running": 0, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "idle", "about": "Drafts polite reminders for overdue invoices. Nothing is sent until you say so.", "doing": "", "doing_kind": ""},
+    {"kind": "agent", "name": "Follow-Up", "title": "Customer follow-up", "department": "sales", "running": 0, "queued": 0, "waiting": 1, "on_card": 1, "ai_calls_10m": 0, "failed_24h": 0, "state": "waiting_for_you", "about": "Follows up on open quotes, politely and within limits. Nothing goes out until you say so.", "doing": "Drafting a follow-up to Lakeside Apartments", "doing_kind": "card_waiting"},
+    {"kind": "agent", "name": "List Builder", "title": "Lead lists", "department": "sales", "running": 1, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "running", "about": "Builds lead lists from public business listings.", "doing": "Building a list of 40 property managers in Ann Arbor", "doing_kind": "task_running"},
+    {"kind": "agent", "name": "Caption Writer", "title": "Social captions", "department": "sales", "running": 1, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "running", "about": "Writes captions for service posts in a plain, practical voice.", "doing": "Writing captions for this week's furnace tune-up post", "doing_kind": "task_running"},
+    {"kind": "agent", "name": "Proposal Writer", "title": "Job proposals", "department": "sales", "running": 0, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "idle", "about": "Drafts job proposals from the call notes and the price book.", "doing": "", "doing_kind": ""},
+    {"kind": "agent", "name": "SEO & AI Visibility", "title": "Search visibility", "department": "sales", "running": 0, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "idle", "about": "Checks whether search and AI answers mention the business for common service questions.", "doing": "", "doing_kind": ""},
+    {"kind": "agent", "name": "Person Research", "title": "Call research", "department": "sales", "running": 0, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "idle", "about": "Researches the people on an upcoming call using public business information only.", "doing": "", "doing_kind": ""},
+    {"kind": "agent", "name": "Scheduler", "title": "Route planner", "department": "field_ops", "running": 1, "queued": 0, "waiting": 0, "on_card": 0, "ai_calls_10m": 0, "failed_24h": 0, "state": "running", "about": "Fits service calls onto the technicians' routes and drafts customer time changes for your OK.", "doing": "Fitting 3 emergency calls into tomorrow's schedule", "doing_kind": "task_running"}
+  ],
+  "totals": {"members": 12, "running": 4, "waiting_for_you": 2, "pending_approvals": 2},
+  "tools": [
+    {"name": "Email", "status": "sample", "ok": true},
+    {"name": "Calendar", "status": "sample", "ok": true},
+    {"name": "Payments", "status": "sample", "ok": true},
+    {"name": "Accounting", "status": "sample", "ok": true},
+    {"name": "CRM", "status": "sample", "ok": true}
+  ],
+  "scoreboard": {"done_7d": 12, "failed_7d": 0, "open_cards": 2, "cards_done_7d": 8, "ai_calls_today": 20, "automations_on": 4},
+  "log": [
+    {"at": "2026-11-15T07:58:00", "who": "Ticket Triage", "what": "Sorted 6 sample service requests.", "status": "complete"},
+    {"at": "2026-11-15T07:41:00", "who": "Invoice Drafter", "what": "Drafted 4 sample invoices and stopped for a billing question.", "status": "waiting_for_you"},
+    {"at": "2026-11-15T07:30:00", "who": "Chief of Staff", "what": "Wrote a sample morning page.", "status": "complete"}
+  ],
+  "training": []
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-city/
+dist-graph/
+.env
+.env.*
+!.env.example
+*.log
+.firebase/
