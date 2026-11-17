@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="bg" cx="32" cy="32" r="40" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#03263A"/><stop offset=".6" stop-color="#020D18"/><stop offset="1" stop-color="#000000"/></radialGradient>
+    <radialGradient id="core" cx="32" cy="32" r="14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00F0FF" stop-opacity=".8"/><stop offset="1" stop-color="#00F0FF" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M8 0 H0 V8" fill="none" stroke="#00F0FF" stroke-opacity=".12" stroke-width="1"/></pattern>
+    <clipPath id="c"><rect width="64" height="64" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="64" height="64" fill="url(#bg)"/>
+    <rect width="64" height="64" fill="url(#grid)"/>
+    <!-- hex frame -->
+    <path d="M32 8 L52.8 20 V44 L32 56 L11.2 44 V20 Z" fill="none" stroke="#00F0FF" stroke-opacity=".35" stroke-width="1.4"/>
+    <!-- circuit traces: right-angle links, hub to nodes -->
+    <g filter="url(#glow)" stroke="#00F0FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M32 32 V13"/>
+      <path d="M32 32 H42 L49 25 V19"/>
+      <path d="M32 32 H42 L49 39 V45"/>
+      <path d="M32 32 V51"/>
+      <path d="M32 32 H22 L15 39 V45"/>
+      <path d="M32 32 H22 L15 25 V19"/>
+    </g>
+    <circle cx="32" cy="32" r="14" fill="url(#core)"/>
+    <!-- nodes -->
+    <g filter="url(#glow)">
+      <g fill="#000814" stroke="#00F0FF" stroke-width="2.2">
+        <rect x="28.5" y="7.5" width="7" height="7" rx="1.5"/><rect x="45.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="45.5" y="43.5" width="7" height="7" rx="1.5"/>
+        <rect x="28.5" y="49.5" width="7" height="7" rx="1.5"/><rect x="11.5" y="43.5" width="7" height="7" rx="1.5"/><rect x="11.5" y="13.5" width="7" height="7" rx="1.5"/>
+      </g>
+      <g fill="#39FF88"><rect x="47.5" y="15.5" width="3" height="3"/><rect x="13.5" y="45.5" width="3" height="3"/></g>
+      <circle cx="32" cy="32" r="7.5" fill="#000814" stroke="#FFFFFF" stroke-width="2.4"/>
+      <circle cx="32" cy="32" r="3.2" fill="#00F0FF"/>
+    </g>
+  </g>
+  <rect x=".75" y=".75" width="62.5" height="62.5" rx="13.3" fill="none" stroke="#00F0FF" stroke-opacity=".55" stroke-width="1.5"/>
+</svg>
